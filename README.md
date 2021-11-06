@@ -48,6 +48,7 @@ print(df.describe())
 print(df.head())
 ```
 
+```console
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 1000 entries, 0 to 999
 Data columns (total 4 columns):
@@ -75,7 +76,7 @@ max      24.410000    31.470000  1402.250000     1.000000
 2        20.29     22.70  427.60          0
 3        22.76     26.82  983.33          1
 4        20.29     22.72  438.75          0
-
+```
 
 ```python
 import matplotlib.pyplot as plt
@@ -147,7 +148,7 @@ print('Train: ',X_train.shape, y_train.shape)
 print('Test: ',X_test.shape, y_test.shape)
 ```
 
-> Train:  (750, 3) (750,)
+> Train:  (750, 3) (750,) <br>
 > Test:  (250, 3) (250,)
 
 ```python
@@ -159,7 +160,7 @@ print(MLmodel.score(X_test,y_test))
 CVscores = cross_val_score(MLmodel,X,Y,cv=5)
 print(CVscores)
 ```
-> 0.86
+> 0.86 <br>
 > [0.865 0.9   0.855 0.915 0.83 ]
 
 ```python
