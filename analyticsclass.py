@@ -15,7 +15,7 @@ df = pd.read_csv(url)
 print(df.info())
 print(df.describe())
 print(df.head())
-
+#############################################################
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
@@ -25,7 +25,7 @@ print(x)
 plt.pie(x,labels=[0,1],shadow=True,autopct='%1.1f%%')
 plt.title('Occupancy')
 plt.show()
-
+#############################################################
 fig = plt.figure(figsize=(18,6))
 
 ax1 = fig.add_subplot(1,3,1)
@@ -53,7 +53,7 @@ ax3.set_xticklabels([0,1])
 ax3.set_title('CO2')
 
 plt.show()
-
+#############################################################
 fig = plt.figure(figsize=(13,6))
 x=df['Temperature']
 y=df['Humidity']
@@ -71,7 +71,13 @@ ax3.scatter(z,y,c=df['Occupancy']*5)
 ax3.set_title('CO2 Vs Humidity')
 
 plt.show()
-
+#############################################################
+import seaborn as sns
+#corrmat = df.corr()
+corrmat = df[['Temperature','Humidity','CO2']].corr()
+sns.heatmap(corrmat)
+plt.show()
+#############################################################
 from pandas.plotting import parallel_coordinates
 result = df.copy()
 dfPlot = df.drop('Occupancy',axis=1)
@@ -83,7 +89,7 @@ for feature_name in dfPlot.columns:
    result[feature_name] = (dfPlot[feature_name] - min_value) / (max_value - min_value)
 parallel_coordinates(result,'Occupancy',color=('r','g'))
 plt.show()
-
+#############################################################
 from sklearn.model_selection import train_test_split
 
 Xml=df.drop(['Occupancy'],axis=1)
@@ -94,7 +100,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,Y,test_size=0.25, random_s
 
 print('Train: ',X_train.shape, y_train.shape)
 print('Test: ',X_test.shape, y_test.shape)
-
+#############################################################
 from sklearn.tree import DecisionTreeClassifier
 
 MLmodel = DecisionTreeClassifier(max_depth = 3)
@@ -106,7 +112,7 @@ print(MLmodel.score(X_test,y_test))
 
 CVscores = cross_val_score(MLmodel,X,Y,cv=5)
 print(CVscores)
-
+#############################################################
 from sklearn.tree import export_graphviz
 import os
 import matplotlib.image as mpimg
