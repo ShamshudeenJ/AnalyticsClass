@@ -116,7 +116,7 @@ ax3.set_title('CO2')
 plt.show()
 ```
 
-<img src="/images/box.png" alt="Box" width="400"/>
+<img src="/images/box.png" alt="Box" width="800"/>
 
 ```python
 fig = plt.figure(figsize=(13,6))
@@ -135,7 +135,7 @@ ax3.set_title('CO2 Vs Humidity')
 plt.show()
 ```
 
-<img src="/images/scatter.png" alt="Scatter" width="400"/>
+<img src="/images/scatter.png" alt="Scatter" width="800"/>
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -177,4 +177,4 @@ imgplot = plt.imshow(img)
 plt.show()
 ```
 
-<img src="/images/tree.png" alt="Tree" width="400"/>
+<img src="/images/tree.png" alt="Tree" width="800"/>
