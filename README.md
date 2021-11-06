@@ -32,5 +32,21 @@ Allows us to write and execute Python in browser and Zero configuration required
 * Output will be displayed immediate after code cell
 
 ### Exercise: Room Occupancy detection using CO2, Temperature and Humidity sensors!
+*Procedure:*
+1. Understand the sensor data file 
+2. Plot various graphs for further insights
+3. Split the data into Test and Train and Build Decision Tree (ML Classification) model using Train data
+4. Check the accuracy of the model using Test data
+5. Export the Trained model into simple nested If-Else structure
+
+```python
+import pandas as pd
+url = "https://raw.githubusercontent.com/ShamshudeenJ/AnalyticsClass/master/roomSensorData.csv"
+df = pd.read_csv(url)
+print(df.info())
+print(df.describe())
+print(df.head())
+```
+
 
 
