@@ -23,4 +23,14 @@
         * Dimensionality reduction
         * Model selection
         * Preprocessing
+#### Google Colab
+URL : https://colab.research.google.com/
+Allows us to write and execute Python in browser and Zero configuration required
+* The Notebook cell can either code or text
+* Write code in code cell
+* To run, click the code cell and press Ctrl+Enter
+* Output will be displayed immediate after code cell
+
+### Exercise: Room Occupancy detection using CO2, Temperature and Humidity sensors!
+
 
