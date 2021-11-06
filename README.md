@@ -4,7 +4,7 @@
 * In statistics, exploratory data analysis is an approach of analyzing data sets to summarize their main characteristics, often using statistical graphics and other data visualization methods.
 * A statistical model can be used or not, but primarily EDA is for seeing what the data can tell us beyond the formal modeling or hypothesis testing task!
 <br>
-<img src="/images/eda.png" alt="EDA" width="500"/>
+<img src="/images/eda.png" alt="EDA" width="666"/>
 
 [Source: EDA - wikipedia]
 
@@ -85,6 +85,86 @@ plt.pie(x,labels=[0,1],shadow=True,autopct='%1.1f%%')
 plt.title('Occupancy')
 plt.show()
 ```
-![Pie](/images/pie.png "Pie")
+<img src="/images/pie.png" alt="Pie" width="400"/>
 
+```python
+fig = plt.figure(figsize=(18,6))
+ax1 = fig.add_subplot(1,3,1)
+x = []
+for i in df.Occupancy.unique():
+   x.append(df[df['Occupancy'] == i]['Temperature'])
+ax1.boxplot(x)
+ax1.set_xticklabels([0,1])
+ax1.set_title('Temperature')
+ax2 = fig.add_subplot(1,3,2)
+x = []
+for i in df.Occupancy.unique():
+   x.append(df[df['Occupancy'] == i]['Humidity'])
+ax2.boxplot(x)
+ax2.set_xticklabels([0,1])
+ax2.set_title('Humidity')
+ax3 = fig.add_subplot(1,3,3)
+x = []
+for i in df.Occupancy.unique():
+   x.append(df[df['Occupancy'] == i]['CO2'])
+ax3.boxplot(x)
+ax3.set_xticklabels([0,1])
+ax3.set_title('CO2')
+plt.show()
+```
+<img src="/images/box.png" alt="Box" width="400"/>
+```python
+fig = plt.figure(figsize=(13,6))
+x=df['Temperature']
+y=df['Humidity']
+z=df['CO2']
+ax1 = fig.add_subplot(131)
+ax1.scatter(x,y,c=df['Occupancy']*5)
+ax1.set_title('Temperature Vs Humidity')
+ax2 = fig.add_subplot(132)
+ax2.scatter(x,z,c=df['Occupancy']*5)
+ax2.set_title('Temperature Vs CO2')
+ax3 = fig.add_subplot(133)
+ax3.scatter(z,y,c=df['Occupancy']*5)
+ax3.set_title('CO2 Vs Humidity')
+plt.show()
+```
+<img src="/images/scatter.png" alt="Scatter" width="400"/>
+```python
+from sklearn.model_selection import train_test_split
+Xml=df.drop(['Occupancy'],axis=1)
+X=Xml.values
+Y = df['Occupancy'].values
+X_train, X_test, y_train, y_test = train_test_split(X,Y,test_size=0.25, random_state=0)
+print('Train: ',X_train.shape, y_train.shape)
+print('Test: ',X_test.shape, y_test.shape)
+```
+> Train:  (750, 3) (750,)
+> Test:  (250, 3) (250,)
 
+```python
+from sklearn.tree import DecisionTreeClassifier
+MLmodel = DecisionTreeClassifier(max_depth = 2)
+MLmodel.fit(X_train,y_train)
+from sklearn.model_selection import cross_val_score
+print(MLmodel.score(X_test,y_test)) 
+CVscores = cross_val_score(MLmodel,X,Y,cv=5)
+print(CVscores)
+```
+> 0.86
+> [0.865 0.9   0.855 0.915 0.83 ]
+```python
+from sklearn.tree import export_graphviz
+import os
+import matplotlib.image as mpimg
+dotfile = open("myModel.dot", 'w')
+export_graphviz(MLmodel,out_file=dotfile,
+	feature_names=Xml.columns,class_names=['0','1'])
+dotfile.close()
+os.system('dot myModel.dot -Tpng -o myModel.png')
+img=mpimg.imread('myModel.png')
+fig = plt.figure(figsize=(20,10))
+imgplot = plt.imshow(img)
+plt.show()
+```
+<img src="/images/tree.png" alt="Tree" width="400"/>
