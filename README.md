@@ -6,4 +6,21 @@
 <br>
 
 ![EDA](/images/eda.png "EDA")
+[Source: EDA - wikipedia]
+
+#### Python packages used
+* Pandas
+* Matplotlib
+* Numpy
+* Seaborn
+* Sklearn
+    * Simple and efficient tools for predictive data analysis
+    * Built on NumPy, SciPy, and matplotlib
+    * Supports
+        * Classification
+        * Regression
+        * Clustering
+        * Dimensionality reduction
+        * Model selection
+        * Preprocessing
 
