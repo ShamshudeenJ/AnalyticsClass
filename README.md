@@ -47,6 +47,44 @@ print(df.info())
 print(df.describe())
 print(df.head())
 ```
+> <class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1000 entries, 0 to 999
+Data columns (total 4 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   Temperature  1000 non-null   float64
+ 1   Humidity     1000 non-null   float64
+ 2   CO2          1000 non-null   float64
+ 3   Occupancy    1000 non-null   int64  
+dtypes: float64(3), int64(1)
+memory usage: 31.4 KB
+None
+       Temperature     Humidity          CO2    Occupancy
+count  1000.000000  1000.000000  1000.000000  1000.000000
+mean     21.432120    25.312760   716.005630     0.350000
+std       1.037998     2.412848   291.629558     0.477208
+min      20.200000    22.100000   427.500000     0.000000
+25%      20.627500    23.075000   464.575000     0.000000
+50%      20.900000    24.970000   581.175000     0.000000
+75%      22.335000    26.962500   984.250000     1.000000
+max      24.410000    31.470000  1402.250000     1.000000
+   Temperature  Humidity     CO2  Occupancy
+0        21.53     28.29  871.33          0
+1        22.09     26.13  936.43          1
+2        20.29     22.70  427.60          0
+3        22.76     26.82  983.33          1
+4        20.29     22.72  438.75          0
 
+```python
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+fig = plt.figure(figsize=(18,6))
+x = df['Occupancy'].value_counts()
+print(x)
+plt.pie(x,labels=[0,1],shadow=True,autopct='%1.1f%%')
+plt.title('Occupancy')
+plt.show()
+```
+![Pie](/images/pie.png "Pie")
 
 
