@@ -47,7 +47,8 @@ print(df.info())
 print(df.describe())
 print(df.head())
 ```
-> <class 'pandas.core.frame.DataFrame'>
+
+<class 'pandas.core.frame.DataFrame'>
 RangeIndex: 1000 entries, 0 to 999
 Data columns (total 4 columns):
  #   Column       Non-Null Count  Dtype  
@@ -75,6 +76,7 @@ max      24.410000    31.470000  1402.250000     1.000000
 3        22.76     26.82  983.33          1
 4        20.29     22.72  438.75          0
 
+
 ```python
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
@@ -85,6 +87,7 @@ plt.pie(x,labels=[0,1],shadow=True,autopct='%1.1f%%')
 plt.title('Occupancy')
 plt.show()
 ```
+
 <img src="/images/pie.png" alt="Pie" width="400"/>
 
 ```python
@@ -112,7 +115,9 @@ ax3.set_xticklabels([0,1])
 ax3.set_title('CO2')
 plt.show()
 ```
+
 <img src="/images/box.png" alt="Box" width="400"/>
+
 ```python
 fig = plt.figure(figsize=(13,6))
 x=df['Temperature']
@@ -129,7 +134,9 @@ ax3.scatter(z,y,c=df['Occupancy']*5)
 ax3.set_title('CO2 Vs Humidity')
 plt.show()
 ```
+
 <img src="/images/scatter.png" alt="Scatter" width="400"/>
+
 ```python
 from sklearn.model_selection import train_test_split
 Xml=df.drop(['Occupancy'],axis=1)
@@ -139,6 +146,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,Y,test_size=0.25, random_s
 print('Train: ',X_train.shape, y_train.shape)
 print('Test: ',X_test.shape, y_test.shape)
 ```
+
 > Train:  (750, 3) (750,)
 > Test:  (250, 3) (250,)
 
@@ -153,6 +161,7 @@ print(CVscores)
 ```
 > 0.86
 > [0.865 0.9   0.855 0.915 0.83 ]
+
 ```python
 from sklearn.tree import export_graphviz
 import os
@@ -167,4 +176,5 @@ fig = plt.figure(figsize=(20,10))
 imgplot = plt.imshow(img)
 plt.show()
 ```
+
 <img src="/images/tree.png" alt="Tree" width="400"/>
