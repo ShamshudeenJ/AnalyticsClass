@@ -148,8 +148,10 @@ print('Train: ',X_train.shape, y_train.shape)
 print('Test: ',X_test.shape, y_test.shape)
 ```
 
-> Train:  (750, 3) (750,) <br>
-> Test:  (250, 3) (250,)
+```console
+Train:  (750, 3) (750,) 
+Test:  (250, 3) (250,)
+```
 
 ```python
 from sklearn.tree import DecisionTreeClassifier
@@ -160,8 +162,11 @@ print(MLmodel.score(X_test,y_test))
 CVscores = cross_val_score(MLmodel,X,Y,cv=5)
 print(CVscores)
 ```
-> 0.86 <br>
-> [0.865 0.9   0.855 0.915 0.83 ]
+
+```console
+ 0.86 
+ [0.865 0.9   0.855 0.915 0.83 ]
+```
 
 ```python
 from sklearn.tree import export_graphviz
